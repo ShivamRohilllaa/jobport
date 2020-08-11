@@ -5,6 +5,10 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='home'),
-    path('clgdet/', views.clgdet, name='College Details'),
+    path('profdet/', views.Profdet, name='Profile'),
+    path('clgdet/', views.clgdet, name='College'),
     path('<int:id>/', views.update_data, name='updateprof'),
+    path('signup', views.handleSignup, name='handleSignup'),
+    path('login', views.handleLogin, name='handleLogin'),
+    path('logout', views.handleLogout, name='handleLogout'),
 ]
