@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class profile(models.Model):
-    # user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     email = models.CharField(max_length=100)
     phone = models.IntegerField()
@@ -14,14 +14,14 @@ class profile(models.Model):
         return self.name
 
 class clgdet(models.Model):
-    name = models.ForeignKey(profile, on_delete=models.CASCADE)
+    name = models.ForeignKey(profile, on_delete=models.CASCADE, default='')
     college = models.CharField(max_length=100)
     school = models.CharField(max_length=15)
     branch = models.CharField(max_length=100)
     degree = models.CharField(max_length=100)
 
 class othdet(models.Model):
-    name = models.ForeignKey(profile, on_delete=models.CASCADE)
+    name = models.ForeignKey(profile, on_delete=models.CASCADE, default='')
     prefloc = models.CharField(max_length=100)
     curloc = models.CharField(max_length=15)
     pskills = models.CharField(max_length=100)

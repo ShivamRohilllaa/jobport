@@ -15,7 +15,7 @@ def Profdet(request):
             phone = fm.cleaned_data['phone']
             address = fm.cleaned_data['address']
             reg = profile(name=name, email=email, phone=phone, address=address)
-            reg.save()
+            reg.save(instance=request.user.profile)
             # It refresh the form and show the form empty
             fm = Profilereg() 
             return redirect('/clgdet')
@@ -38,8 +38,10 @@ def clgdet(request):
             om = Clgreg() 
     else:
         om = Clgreg()
-    show = profile.objects.all()    
-    return render(request,'clgdet.html',{'form':om, 'show':show})
+    # show = profile.objects.all()    
+    # return render(request,'clgdet.html',{'form':om,'show':show})
+    show = User.objects.get(id=request.user.id)
+    return render(request,'clgdet.html',{'form':om})
 
 def index(request):
     return render(request, 'index.html')
